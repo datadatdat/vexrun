@@ -2,7 +2,7 @@
 Opinionated CLI Test Runner
 
 ### Caveat
-This CLI test runner was built for one application and one application only. It was built to run end-to-end tests for [Titan](https://titan-data.io/). If you decide to use it, it comes AS-IS with no promise the docs are up to date or it will work for your use case. *You have been warned*. 
+This CLI test runner was built for one application and one application only. It was built to run end-to-end tests for [Datadatdat](https://datadatdat.com/). If you decide to use it, it comes AS-IS with no promise the docs are up to date or it will work for your use case. *You have been warned*. 
 
 ### Install
 *   Download the latest jar from the [releases](https://github.com/mcred/vexrun/releases). 
@@ -48,9 +48,9 @@ tests:
 #### command
 STRING or LIST of command to run.
 ```yaml
-command: titan install
+command: Datadatdat install
 
-command: [titan, install]
+command: [Datadatdat, install]
 ```
 
 #### exitValue
@@ -136,29 +136,29 @@ after:
 ```
 
 ### Sample
-The following sample tests are used to test the [Getting Started](https://titan-data.io/getting-started) examples for titan and represent the different methods for commands and validation. 
+The following sample tests are used to test the [Getting Started](https://datadatdat.io/getting-started) examples for Datadatdat and represent the different methods for commands and validation. 
 
 ```yml
 tests:
-  - "can install titan":
-      command: titan install
+  - "can install Datadatdat":
+      command: Datadatdat install
       exitValue: 0
       wait: 30
       stdout:
-        contains: Titan cli successfully installed, happy data versioning :)
+        contains: Datadatdat cli successfully installed, happy data versioning :)
   - "can clone hello-world/posrgres":
-      command: titan clone s3web://demo.titan-data.io/hello-world/postgres hello-world
+      command: Datadatdat clone s3web://demo.datadatdat.io/hello-world/postgres hello-world
       exitValue: 0
       stdout:
         contains:
           - Running controlled container hello-world
           - Starting container hello-world
   - "hello-world/postgres already exists":
-      command: titan clone s3web://demo.titan-data.io/hello-world/postgres hello-world
+      command: Datadatdat clone s3web://demo.datadatdat.io/hello-world/postgres hello-world
       exitValue: 1
       stdout: repository 'hello-world' already exists
   - "can list hello-world/postgres":
-      command: titan ls
+      command: Datadatdat ls
       exitValue: 0
       stdout: |-
         REPOSITORY            STATUS
@@ -168,14 +168,14 @@ tests:
       exitValue: 0
       stdout: Hello, World!
   - "can remove hello-world/postgres":
-      command: titan rm -f hello-world
+      command: Datadatdat rm -f hello-world
       exitValue: 0
       stdout: |-
         Removing container hello-world
         Deleting volume hello-world/v0
         hello-world removed
   - "can run mongo-test":
-      command: titan run -- --name mongo-test -p 27017:27017 -d mongo:latest
+      command: Datadatdat run -- --name mongo-test -p 27017:27017 -d mongo:latest
       exitValue: 0
       wait: 30
       stdout: |-
@@ -189,7 +189,7 @@ tests:
       stdout: |-
         WriteResult({ "nInserted" : 1 })
   - "can commit mongo-test":
-      command: [titan, commit, -m, First Employee, mongo-test]
+      command: [Datadatdat, commit, -m, First Employee, mongo-test]
       exitValue: 0
       stdout:
         contains: Commit
@@ -212,7 +212,7 @@ tests:
           - '"firstName" : "Ada", "lastName" : "Lovelace"'
           - '"firstName" : "Grace", "lastName" : "Hopper"'
   - "can checkout commit mongo-test":
-      command: [titan, checkout, --commit, $COMMIT_GUID, mongo-test]
+      command: [Datadatdat, checkout, --commit, $COMMIT_GUID, mongo-test]
       exitValue: 0
       wait: 10
       stdout: |-
@@ -230,15 +230,15 @@ tests:
         excludes:
           - '"firstName" : "Grace", "lastName" : "Hopper"'
   - "can remove mongo-test":
-      command: titan rm -f mongo-test
+      command: Datadatdat rm -f mongo-test
       exitValue: 0
       stdout: |-
         Removing container mongo-test
         Deleting volume mongo-test/v0
         Deleting volume mongo-test/v1
         mongo-test removed
-  - "can uninstall titan":
-      command: titan uninstall
+  - "can uninstall Datadatdat":
+      command: Datadatdat uninstall
       exitValue: 0
-      stdout: Uninstalled titan infrastructure
+      stdout: Uninstalled Datadatdat infrastructure
 ```
