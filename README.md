@@ -136,7 +136,7 @@ after:
 ```
 
 ### Sample
-The following sample tests are used to test the [Getting Started](https://datadatdat.io/getting-started) examples for Datadatdat and represent the different methods for commands and validation. 
+The following sample tests are used to test the [Getting Started](https://datadatdat.com/getting-started) examples for Datadatdat and represent the different methods for commands and validation. 
 
 ```yml
 tests:
@@ -147,14 +147,14 @@ tests:
       stdout:
         contains: Datadatdat cli successfully installed, happy data versioning :)
   - "can clone hello-world/posrgres":
-      command: Datadatdat clone s3web://demo.datadatdat.io/hello-world/postgres hello-world
+      command: Datadatdat clone s3web://demo.datadatdat.com/hello-world/postgres hello-world
       exitValue: 0
       stdout:
         contains:
           - Running controlled container hello-world
           - Starting container hello-world
   - "hello-world/postgres already exists":
-      command: Datadatdat clone s3web://demo.datadatdat.io/hello-world/postgres hello-world
+      command: Datadatdat clone s3web://demo.datadatdat.com/hello-world/postgres hello-world
       exitValue: 1
       stdout: repository 'hello-world' already exists
   - "can list hello-world/postgres":
